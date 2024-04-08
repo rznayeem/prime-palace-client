@@ -38,10 +38,10 @@ const House = ({ house }) => {
           <p className="text-sm text-gray-500 dark:text-gray-500">
             Category: {category}
           </p>
-          <location className="flex items-center hover:text-sky-500 cursor-pointer">
+          <div className="flex items-center hover:text-sky-500 cursor-pointer">
             <IoLocationSharp className="text-xl text-sky-500 mr-3" />
             {location}
-          </location>
+          </div>
           <div className="flex gap-4">
             <div className="flex gap-2 items-center">
               <MdOutlineBedroomParent className="text-blue-600" /> {bedroom}

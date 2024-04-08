@@ -10,8 +10,6 @@ import bannerBg from '../../assets/bannerBg.png';
 const Banner = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(0);
 
-  console.log(bannerBg);
-
   const sliderData = [
     {
       img: 'https://i.ibb.co/2hPpJRw/banner-1.jpg',

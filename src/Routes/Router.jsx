@@ -4,6 +4,7 @@ import Root from '../Layouts/Root';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import UpdateProfile from '../pages/UpdateProfile/UpdateProfile';
+import EstateDetails from '../pages/EstateDetails/EstateDetails';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <UpdateProfile></UpdateProfile>,
+      },
+      {
+        path: '/estate_details/:id',
+        element: <EstateDetails></EstateDetails>,
+        loader: () => fetch('/estateData.json'),
       },
     ],
   },
