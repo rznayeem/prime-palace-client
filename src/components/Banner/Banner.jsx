@@ -46,7 +46,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="container relative mx-auto h-[80vh] my-10">
+    <div className="mx-auto h-[90vh]">
       <Swiper
         style={{
           '--swiper-navigation-color': '#fff',
@@ -58,11 +58,27 @@ const Banner = () => {
         }}
         modules={[FreeMode, Navigation, Thumbs]}
         onSlideChange={() => console.log('slide change')}
-        className="mySwiper2 mx-auto z-0 h-[80vh] rounded-2xl"
+        className="mySwiper2 mx-auto h-[90vh] bg-[#00000080] bg-blend-multiply"
       >
         {sliderData.map((slider, idx) => (
           <SwiperSlide key={idx}>
-            <img className="" src={slider.img} alt="" />
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-[#00000040] bg-blend-multiply"
+              style={{ backgroundImage: `url(${slider.img})` }}
+            >
+              <div className="text-center mt-36">
+                <h1 className="text-6xl font-extrabold text-white font-bodoni">
+                  Find Your Dream Home at <br />{' '}
+                  <span className="mr-2">Prime</span>
+                  <span className="text-[#F85359]">Palace</span>
+                </h1>
+                <p className="mt-7 text-white text-xl">
+                  Explore a Wide Range of Residential Properties in Your Desired
+                  Location .<br />
+                  Discover Comfort, Luxury, and Convenience .
+                </p>
+              </div>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -73,12 +89,12 @@ const Banner = () => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper absolute bottom-[300px] max-w-[80%]"
+        className="mySwiper absolute bottom-[12%] lg:bottom-[300px] max-w-[80%]"
       >
         {sliderData.map((slider, idx) => (
           <SwiperSlide key={idx}>
             <img
-              className="hover:shadow-lg h-auto w-auto p-0 rounded-xl border m-5"
+              className="hover:shadow-lg btn h-auto w-auto p-0 rounded-xl border m-5 cursor-pointer"
               src={slider.img}
               alt=""
             />

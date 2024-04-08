@@ -5,8 +5,12 @@ import Footer from '../Shared/Footer/Footer';
 const Root = () => {
   return (
     <div className="font-poppins">
-      <Nav></Nav>
-      <Outlet></Outlet>
+      <div className="relative z-40">
+        <Nav></Nav>
+      </div>
+      <div>
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
     </div>
   );
