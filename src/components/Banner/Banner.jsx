@@ -5,7 +5,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { useState } from 'react';
-import bannerBg from '../../assets/bannerBg.png';
+import 'aos/dist/aos.css';
 
 const Banner = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(0);
@@ -44,7 +44,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="mx-auto h-[90vh]">
+    <div data-aos="zoom-in" className="mx-auto h-[90vh]">
       <Swiper
         style={{
           '--swiper-navigation-color': '#fff',
@@ -65,12 +65,15 @@ const Banner = () => {
               style={{ backgroundImage: `url(${slider.img})` }}
             >
               <div className="text-center mt-36">
-                <h1 className="text-6xl font-extrabold text-white font-bodoni">
+                <h1
+                  data-aos="fade-right"
+                  className="text-6xl font-extrabold text-white font-bodoni"
+                >
                   Find Your Dream Home at <br />{' '}
                   <span className="mr-2">Prime</span>
                   <span className="text-[#F85359]">Palace</span>
                 </h1>
-                <p className="mt-7 text-white text-xl">
+                <p data-aos="fade-left" className="mt-7 text-white text-xl">
                   Explore a Wide Range of Residential Properties in Your Desired
                   Location .<br />
                   Discover Comfort, Luxury, and Convenience .
@@ -87,6 +90,7 @@ const Banner = () => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
+        data-aos="fade-up"
         className="mySwiper absolute bottom-[12%] lg:bottom-[300px] max-w-[80%]"
       >
         {sliderData.map((slider, idx) => (

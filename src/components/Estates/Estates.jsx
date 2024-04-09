@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import House from './House/House';
+import 'aos/dist/aos.css';
 
 const Estates = () => {
   const [houses, setHouses] = useState([]);

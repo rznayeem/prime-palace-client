@@ -19,7 +19,10 @@ const House = ({ house }) => {
 
   return (
     <div>
-      <div className="space-y-4 rounded-lg  p-6 shadow-lg bg-white">
+      <div
+        data-aos="fade-up"
+        className="space-y-4 rounded-lg  p-6 shadow-lg bg-white"
+      >
         <div className="relative">
           <img
             alt="card navigate ui"
