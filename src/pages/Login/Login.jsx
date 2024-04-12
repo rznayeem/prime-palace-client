@@ -1,8 +1,30 @@
 import { Link } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import vector from '../../assets/signup-vector.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+
+  const handleLogin = e => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get('name');
+    const email = form.get('email');
+    const photo = form.get('photo');
+    const password = form.get('password');
+
+    signIn(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   return (
     <div>
       <div className="hero bg-base-200">
@@ -26,7 +48,7 @@ const Login = () => {
             {/* Input fields and the form started */}
 
             <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-              <form className="card-body">
+              <form onSubmit={handleLogin} className="card-body">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -34,6 +56,7 @@ const Login = () => {
                   <input
                     type="email"
                     placeholder="email"
+                    name="email"
                     className="input input-bordered"
                     required
                   />
@@ -44,6 +67,7 @@ const Login = () => {
                   </label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="password"
                     className="input input-bordered"
                     required
