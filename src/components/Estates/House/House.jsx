@@ -20,7 +20,8 @@ const House = ({ house }) => {
   return (
     <div>
       <div
-        data-aos="fade-up"
+        data-aos="zoom-in-up"
+        data-aos-duration="1000"
         className="space-y-4 rounded-lg  p-6 shadow-lg bg-white"
       >
         <div className="relative">

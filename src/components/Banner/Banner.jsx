@@ -44,7 +44,7 @@ const Banner = () => {
   ];
 
   return (
-    <div data-aos="zoom-in" className="mx-auto h-[90vh]">
+    <div className="mx-auto h-[90vh] md:h-[100vh] -mt-[111px]">
       <Swiper
         style={{
           '--swiper-navigation-color': '#fff',
@@ -55,8 +55,8 @@ const Banner = () => {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-        onSlideChange={() => console.log('slide change')}
-        className="mySwiper2 mx-auto h-[90vh] bg-[#00000080] bg-blend-multiply"
+        data-aos="zoom-in-right"
+        className="mySwiper2 mx-auto h-[100vh] bg-[#00000080] bg-blend-multiply"
       >
         {sliderData.map((slider, idx) => (
           <SwiperSlide key={idx}>
@@ -67,13 +67,18 @@ const Banner = () => {
               <div className="text-center mt-36">
                 <h1
                   data-aos="fade-right"
+                  data-aos-duration="2000"
                   className="text-6xl font-extrabold text-white font-bodoni"
                 >
-                  Find Your Dream Home at <br />{' '}
+                  Find Your Dream Home at <br />
                   <span className="mr-2">Prime</span>
                   <span className="text-[#F85359]">Palace</span>
                 </h1>
-                <p data-aos="fade-left" className="mt-7 text-white text-xl">
+                <p
+                  data-aos="fade-left"
+                  data-aos-duration="2000"
+                  className="mt-7 text-white text-xl"
+                >
                   Explore a Wide Range of Residential Properties in Your Desired
                   Location .<br />
                   Discover Comfort, Luxury, and Convenience .
@@ -91,7 +96,8 @@ const Banner = () => {
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         data-aos="fade-up"
-        className="mySwiper absolute bottom-[12%] lg:bottom-[300px] max-w-[80%]"
+        data-aos-duration="1000"
+        className="mySwiper absolute bottom-[200px] md:bottom-[200px] lg:bottom-[300px] max-w-[80%]"
       >
         {sliderData.map((slider, idx) => (
           <SwiperSlide key={idx}>

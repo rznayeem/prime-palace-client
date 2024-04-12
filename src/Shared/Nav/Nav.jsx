@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
+import 'aos/dist/aos.css';
 
 const Nav = () => {
   const navLinks = (
@@ -20,10 +21,10 @@ const Nav = () => {
 
   return (
     <div>
-      <div className="navbar container mx-auto">
+      <div data-aos="fade-down" className="navbar container mx-auto">
         <div className="navbar-start my-5">
           <details className="dropdown">
-            <summary className="m-1 btn bg-transparent border-none shadow-none w-auto h-auto p-0 m-0">
+            <summary className=" btn bg-transparent border-none shadow-none w-auto h-auto p-0 m-0">
               <div
                 tabIndex={0}
                 role="button"
@@ -65,10 +66,14 @@ const Nav = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn bg-[#F85359] text-white text-[18px]">Login</a>
+          <Link
+            to={'/login'}
+            className="btn glass bg-[#F85359]/[.01] text-white text-[18px]"
+          >
+            Login
+          </Link>
         </div>
       </div>
-      <hr />
     </div>
   );
 };
