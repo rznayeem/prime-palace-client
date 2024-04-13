@@ -3,27 +3,50 @@ import 'aos/dist/aos.css';
 import vector from '../../assets/signup-vector.svg';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const { error, setError } = false;
 
-  const handleLogin = e => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const name = form.get('name');
-    const email = form.get('email');
-    const photo = form.get('photo');
-    const password = form.get('password');
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
+  const onSubmit = data => {
+    const { email, password } = data;
+    console.log(data);
     signIn(email, password)
       .then(result => {
+        setError(false);
         const user = result.user;
         console.log(user);
       })
       .catch(error => {
-        console.error(error);
+        setError(true);
       });
   };
+
+  // const handleLogin = e => {
+  //   e.preventDefault();
+  //   const form = new FormData(e.currentTarget);
+  //   const name = form.get('name');
+  //   const email = form.get('email');
+  //   const photo = form.get('photo');
+  //   const password = form.get('password');
+
+  //   signIn(email, password)
+  //     .then(result => {
+  //       const user = result.user;
+  //       console.log(user);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
 
   return (
     <div>
@@ -48,7 +71,7 @@ const Login = () => {
             {/* Input fields and the form started */}
 
             <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-              <form onSubmit={handleLogin} className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -57,9 +80,15 @@ const Login = () => {
                     type="email"
                     placeholder="email"
                     name="email"
+                    {...register('email', { required: true })}
                     className="input input-bordered"
                     required
                   />
+                  <p>
+                    {errors.email && (
+                      <span className="">This field is required</span>
+                    )}
+                  </p>
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -68,6 +97,7 @@ const Login = () => {
                   <input
                     type="password"
                     name="password"
+                    {...register('password', { required: true })}
                     placeholder="password"
                     className="input input-bordered"
                     required
@@ -79,16 +109,16 @@ const Login = () => {
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>
+                  <button className="btn bg-[#8DA6E8] text-white text-xl">
+                    Login
+                  </button>
                 </div>
               </form>
             </div>
 
             <div className="flex items-center pt-4 space-x-2">
               <div className="flex-1 h-px bg-gray-300"></div>
-              <p className="text-sm text-gray-600">
-                Login with social accounts
-              </p>
+              <p className="text-sm text-white">Login with social accounts</p>
               <div className="flex-1 h-px bg-gray-300"></div>
             </div>
 

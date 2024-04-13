@@ -1,28 +1,67 @@
 import { Link } from 'react-router-dom';
 import vector from '../../assets/signup-vector.svg';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import { useForm } from 'react-hook-form';
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserData } = useContext(AuthContext);
+  // const [registerError, setRegisterError] = useState('');
+  // const [success, setSuccess] = useState('');
 
-  const handleRegister = e => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const name = form.get('name');
-    const email = form.get('email');
-    const photo = form.get('photo');
-    const password = form.get('password');
+  const {
+    register,
+    handleSubmit,
+    watch,
+    onSuccess,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = data => {
+    const { email, password, name, photo } = data;
+
+    // if (password.length < 6) {
+    //   setRegisterError('password must be more than 6 characters');
+    //   return;
+    // } else if (
+    //   !/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)
+    // ) {
+    //   setRegisterError('error');
+    //   return;
+    // }
+
+    // setRegisterError('');
+    // setSuccess('');
 
     createUser(email, password)
       .then(result => {
         const user = result.user;
+        updateUserData(name, photo);
         console.log(user);
       })
       .catch(error => {
-        console.error(error);
+        console.log(error);
       });
   };
+
+  // const handleRegister = e => {
+  //   e.preventDefault();
+  //   const form = new FormData(e.currentTarget);
+  //   const name = form.get('name');
+  //   const email = form.get('email');
+  //   const photo = form.get('photo');
+  //   const password = form.get('password');
+  //   console.log(register);
+
+  //   createUser(email, password)
+  //     .then(result => {
+  //       const user = result.user;
+  //       console.log(user);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
 
   return (
     <div>
@@ -51,7 +90,11 @@ const Register = () => {
             {/* Input fields and the form started */}
 
             <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-              <form onSubmit={handleRegister} className="card-body w-full">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="card-body w-full"
+                noValidate
+              >
                 <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text">Your Name</span>
@@ -59,6 +102,7 @@ const Register = () => {
                   <input
                     type="text"
                     name="name"
+                    {...register('name')}
                     placeholder="Your Name"
                     className="input input-bordered"
                   />
@@ -71,6 +115,7 @@ const Register = () => {
                     type="email"
                     placeholder="email"
                     name="email"
+                    {...register('email', { required: true })}
                     className="input input-bordered"
                     required
                   />
@@ -82,6 +127,7 @@ const Register = () => {
                   <input
                     type="text"
                     name="photo"
+                    {...register('photo')}
                     placeholder="Put your photo url"
                     className="input input-bordered"
                   />
@@ -93,10 +139,21 @@ const Register = () => {
                   <input
                     type="password"
                     name="password"
+                    {...register('password', {
+                      required: true,
+                      pattern: {
+                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
+                        message:
+                          "*Please include at least '6' digits one 'uppercase' letter and one 'lowercase' letter in the password",
+                      },
+                    })}
                     placeholder="password"
                     className="input input-bordered"
                     required
                   />
+                  <p className="text-red-600 pt-2">
+                    {errors.password?.message}
+                  </p>
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
                       Forgot password?
@@ -104,16 +161,16 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>
+                  <button className="btn bg-[#8DA6E8] text-white text-xl">
+                    Register
+                  </button>
                 </div>
               </form>
             </div>
 
             <div className="flex items-center pt-4 space-x-2">
               <div className="flex-1 h-px bg-gray-300"></div>
-              <p className="text-sm text-gray-600">
-                Login with social accounts
-              </p>
+              <p className="text-sm text-white">Login with social accounts</p>
               <div className="flex-1 h-px bg-gray-300"></div>
             </div>
 
