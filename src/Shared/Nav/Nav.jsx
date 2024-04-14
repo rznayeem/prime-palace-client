@@ -2,6 +2,8 @@ import { Link, NavLink } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import { IoPersonSharp } from 'react-icons/io5';
+import { MdOutlineMailOutline } from 'react-icons/md';
 
 const Nav = () => {
   const { logOut, user, loader } = useContext(AuthContext);
@@ -88,7 +90,7 @@ const Nav = () => {
             <div className="flex items-center gap-6">
               <div className="dropdown dropdown-hover dropdown-end">
                 <div className="avatar">
-                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <div className="w-10 rounded-full ring ring-[#F85359] ring-offset-base-100 ring-offset-2">
                     <img
                       src={
                         user?.photoURL ||
@@ -99,13 +101,18 @@ const Nav = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box lg:w-52"
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box"
                 >
                   <li>
-                    <p>{user?.displayName || 'N/A'}</p>
+                    <p>
+                      <IoPersonSharp />
+                      {user?.displayName || 'N/A'}
+                    </p>
                   </li>
                   <li>
-                    <a>Item 2</a>
+                    <a>
+                      <MdOutlineMailOutline /> {user?.email || 'N/A'}
+                    </a>
                   </li>
                 </ul>
               </div>

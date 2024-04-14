@@ -13,7 +13,7 @@ const Profile = () => {
             user?.photoURL || 'https://i.ibb.co/wMhfdTN/user-profile-icon.png'
           }
           alt=""
-          className="w-[50vw] h-[50vh] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
+          className="shadow-xl min-w-[40%] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
         />
         <div className="space-y-4 text-center divide-y dark:divide-gray-300">
           <div className="my-2 space-y-1">

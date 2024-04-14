@@ -8,11 +8,13 @@ import EstateDetails from '../pages/EstateDetails/EstateDetails';
 import Profile from '../pages/Profile/Profile';
 import Contact from '../pages/Contact/Contact';
 import PrivateRoute from './PrivateRoute';
+import ErrorPage from '../pages/ErrorPages/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -44,7 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/contact',
-        element: <Contact></Contact>,
+        element: (
+          <PrivateRoute>
+            <Contact></Contact>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/estate_details/:id',

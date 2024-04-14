@@ -5,10 +5,11 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
 
 const Register = () => {
-  const { createUser, updateUserData, googleLogin } = useContext(AuthContext);
+  const { createUser, updateUserData, googleLogin, githubLogin } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -40,6 +41,21 @@ const Register = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
+      .then(result => {
+        const user = result.user;
+        if (user) {
+          toast.success('Account created successfully');
+          setTimeout(() => {
+            navigate('/');
+          }, 1500);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  const handleGithubLogin = () => {
+    githubLogin()
       .then(result => {
         const user = result.user;
         if (user) {
@@ -184,7 +200,7 @@ const Register = () => {
             <div className="flex flex-col lg:flex-row justify-center space-x-4">
               <div
                 onClick={handleGoogleLogin}
-                className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
+                className="mx-auto border cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
               >
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
@@ -194,13 +210,16 @@ const Register = () => {
                   G+
                 </span>
               </div>
-              <div className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
+              <div
+                onClick={handleGithubLogin}
+                className="mx-auto border cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
+              >
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
                 </div>
                 <span className="right-0 top-0 h-0 w-0 -rotate-90 border-b-[50px] border-r-[50px] border-b-transparent border-r-[#8EA7E9] group-hover:hidden"></span>
                 <span className="pr-4 text-4xl font-bold text-[#8EA7E9]">
-                  G+
+                  <FaGithub />
                 </span>
               </div>
             </div>
