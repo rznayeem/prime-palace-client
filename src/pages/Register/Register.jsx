@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
   const { createUser, updateUserData, googleLogin, githubLogin } =
@@ -72,6 +73,9 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Prime Palace | Sign In</title>
+      </Helmet>
       <div className="hero bg-base-200">
         <div className="container lg:h-[90vh] my-20 mx-auto flex flex-col lg:flex-row">
           <div

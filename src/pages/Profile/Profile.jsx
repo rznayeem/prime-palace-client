@@ -1,12 +1,16 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
   const { user, loader } = useContext(AuthContext);
 
   return (
     <div className="container mx-auto flex my-20 justify-center">
+      <Helmet>
+        <title>Prime Palace | {user?.displayName || 'Profile'}</title>
+      </Helmet>
       <div className="flex flex-col justify-center w-[50vw] h-[80vh] p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
         <img
           src={

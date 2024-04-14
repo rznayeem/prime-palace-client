@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateProfile = () => {
   const { user, updateUserData, loader } = useContext(AuthContext);
@@ -21,6 +22,11 @@ const UpdateProfile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          Prime Palace | {user?.displayName || 'Profile'}, Update your profile
+        </title>
+      </Helmet>
       <div className="container mx-auto my-10 flex flex-col items-center justify-center space-y-4 rounded-xl bg-white p-8 font-sans shadow-lg">
         <div className="group relative">
           <img

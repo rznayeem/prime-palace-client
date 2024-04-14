@@ -14,7 +14,14 @@ const EstateDetails = () => {
 
   const { name, image } = selectedEstate;
 
-  return <div>{image}</div>;
+  return (
+    <div>
+      <Helmet>
+        <title>Prime Palace | Estate Details</title>
+      </Helmet>
+      {image}
+    </div>
+  );
 };
 
 export default EstateDetails;

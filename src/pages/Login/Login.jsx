@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const { signIn, googleLogin, githubLogin } = useContext(AuthContext);
@@ -73,6 +74,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Prime Palace | Log In</title>
+      </Helmet>
       <div className="hero bg-base-200">
         <div className="container h-[90vh] my-20 mx-auto flex flex-col lg:flex-row-reverse">
           <div
