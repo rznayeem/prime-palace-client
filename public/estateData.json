@@ -10,7 +10,7 @@
     "area": "3,500 sq ft",
     "location": "Los Angeles, California",
     "facilities": ["Spacious Living Room", "Gourmet Kitchen", "Infinity Pool"],
-    "category": "Single family",
+    "segment": "Single family",
     "bedroom": 3,
     "toilet": 2
   },
@@ -25,7 +25,7 @@
     "area": "2,000 sq ft",
     "location": "New York City, New York",
     "facilities": ["Rooftop Terrace", "Fitness Center", "Private Garage"],
-    "category": "Townhouses",
+    "segment": "Townhouses",
     "bedroom": 5,
     "toilet": 3
   },
@@ -40,7 +40,7 @@
     "area": "1,200 sq ft",
     "location": "San Francisco, California",
     "facilities": ["Hardwood Floors", "Community Garden", "On-Site Laundry"],
-    "category": "Apartments",
+    "segment": "Apartments",
     "bedroom": 5,
     "toilet": 3
   },
@@ -55,7 +55,7 @@
     "area": "900 sq ft (Per Room)",
     "location": "Boston, Massachusetts",
     "facilities": ["Study Lounges", "Fitness Center", "Game Room"],
-    "category": "Student housing",
+    "segment": "Student housing",
     "bedroom": 7,
     "toilet": 3
   },
@@ -74,7 +74,7 @@
       "Spa & Wellness Center",
       "Restaurant Dining"
     ],
-    "category": "Senior living communities",
+    "segment": "Senior living communities",
     "bedroom": 3,
     "toilet": 2
   },
@@ -89,7 +89,7 @@
     "area": "2,500 sq ft",
     "location": "Maui, Hawaii",
     "facilities": ["Private Beach Access", "Outdoor BBQ Area", "Game Room"],
-    "category": "Vacation rentals",
+    "segment": "Vacation rentals",
     "bedroom": 3,
     "toilet": 2
   },
@@ -104,7 +104,7 @@
     "area": "1,000 sq ft",
     "location": "Asheville, North Carolina",
     "facilities": ["Stone Fireplace", "Wraparound Porch", "Garden Shed"],
-    "category": "Single family",
+    "segment": "Single family",
     "bedroom": 3,
     "toilet": 2
   },
@@ -119,7 +119,7 @@
     "area": "4,000 sq ft",
     "location": "Chicago, Illinois",
     "facilities": ["Private Elevator", "Terrace Lounge", "Home Theater"],
-    "category": "Apartments",
+    "segment": "Apartments",
     "bedroom": 4,
     "toilet": 2
   },
@@ -134,7 +134,7 @@
     "area": "2,800 sq ft",
     "location": "Denver, Colorado",
     "facilities": ["Large Backyard", "Playroom", "Attached Garage"],
-    "category": "Single family",
+    "segment": "Single family",
     "bedroom": 4,
     "toilet": 2
   }

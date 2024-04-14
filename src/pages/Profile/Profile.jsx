@@ -7,11 +7,11 @@ const Profile = () => {
   const { user, loader } = useContext(AuthContext);
 
   return (
-    <div className="container mx-auto flex my-20 justify-center">
+    <div className="container mx-auto flex lg:my-20 justify-center">
       <Helmet>
         <title>Prime Palace | {user?.displayName || 'Profile'}</title>
       </Helmet>
-      <div className="flex flex-col justify-center w-[50vw] h-[80vh] p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
+      <div className="flex flex-col justify-center lg:w-[50vw] h-[80vh] p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
         <img
           src={
             user?.photoURL || 'https://i.ibb.co/wMhfdTN/user-profile-icon.png'
@@ -90,7 +90,7 @@ const Profile = () => {
         <div className="flex justify-center">
           <Link
             to={'/updateProfile'}
-            className="group relative flex w-1/3 items-center rounded-lg border-2 border-sky-400 p-4 text-sky-300"
+            className="group relative flex lg:w-1/3 items-center rounded-lg border-2 border-sky-400 p-4 text-sky-300"
           >
             <span>Edit your profile</span>
             <span className="absolute right-3 box-content flex w-1/6 justify-center rounded-md bg-sky-400 duration-300 group-hover:w-[95%]">

@@ -11,7 +11,7 @@ const House = ({ house }) => {
     price,
     status,
     location,
-    category,
+    segment,
     bedroom,
     toilet,
     id,
@@ -27,7 +27,7 @@ const House = ({ house }) => {
         <div className="relative">
           <img
             alt="card navigate ui"
-            className="object-cover w-svw max-h-[290px] rounded-lg"
+            className="object-cover w-full md:h-[214px] lg:h-[290px] rounded-lg"
             src={image}
           />
           <h3 className="absolute right-4 bottom-4 bg-black rounded-full px-4 py-2 font-semibold text-white">
@@ -40,7 +40,7 @@ const House = ({ house }) => {
         <div className="grid gap-2">
           <h1 className="text-lg font-semibold ">{title}</h1>
           <p className="text-sm text-gray-500 dark:text-gray-500">
-            Category: {category}
+            Type: {segment}
           </p>
           <div className="flex items-center hover:text-sky-500 cursor-pointer">
             <IoLocationSharp className="text-xl text-sky-500 mr-3" />
@@ -71,7 +71,7 @@ const House = ({ house }) => {
 House.propTypes = {
   house: PropTypes.shape({
     bedroom: PropTypes.any,
-    category: PropTypes.any,
+    segment: PropTypes.any,
     id: PropTypes.any,
     image: PropTypes.any,
     location: PropTypes.any,
