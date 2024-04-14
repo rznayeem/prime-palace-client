@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { useForm } from 'react-hook-form';
 
 const UpdateProfile = () => {
   const { user, updateUserData, loader } = useContext(AuthContext);

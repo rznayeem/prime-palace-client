@@ -3,8 +3,10 @@ import Estates from '../../components/Estates/Estates';
 
 const Home = () => {
   return (
-    <div className="">
-      <Banner></Banner>
+    <div>
+      <div className="relative">
+        <Banner></Banner>
+      </div>
       <Estates></Estates>
     </div>
   );

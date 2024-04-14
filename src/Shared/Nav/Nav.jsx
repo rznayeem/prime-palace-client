@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Nav = () => {
-  const { logOut, user } = useContext(AuthContext);
+  const { logOut, user, loader } = useContext(AuthContext);
 
   const navLinks = (
     <>
@@ -56,6 +56,13 @@ const Nav = () => {
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {navLinks}
+              <Link
+                onClick={logOut}
+                to={'/login'}
+                className="btn bg-[#F85359] text-white text-[18px] lg:hidden flex"
+              >
+                Log Out
+              </Link>
             </ul>
           </details>
           <Link
@@ -71,9 +78,15 @@ const Nav = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user ? (
+          {loader ? (
+            <div className="w-10 h-10 flex gap-2 items-center justify-center">
+              <div className="w-2 h-5 animate-[ping_1.4s_linear_infinite] bg-sky-600"></div>
+              <div className="w-2 h-5 animate-[ping_1.8s_linear_infinite] bg-sky-600"></div>
+              <div className="w-2 h-5 animate-[ping_2s_linear_infinite] bg-sky-600"></div>
+            </div>
+          ) : user ? (
             <div className="flex items-center gap-6">
-              <div className="dropdown dropdown-hover">
+              <div className="dropdown dropdown-hover dropdown-end">
                 <div className="avatar">
                   <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <img
@@ -86,7 +99,7 @@ const Nav = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content -left-[70%] z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box lg:w-52"
                 >
                   <li>
                     <p>{user?.displayName || 'N/A'}</p>
@@ -99,7 +112,7 @@ const Nav = () => {
               <Link
                 onClick={logOut}
                 to={'/login'}
-                className="btn bg-[#F85359] text-white text-[18px]"
+                className="btn bg-[#F85359] text-white text-[18px] hidden lg:flex"
               >
                 Log Out
               </Link>

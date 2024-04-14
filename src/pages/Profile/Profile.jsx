@@ -7,13 +7,13 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto flex my-20 justify-center">
-      <div className="flex flex-col justify-center w-full h-[80vh] p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
+      <div className="flex flex-col justify-center w-[50vw] h-[80vh] p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
         <img
           src={
             user?.photoURL || 'https://i.ibb.co/wMhfdTN/user-profile-icon.png'
           }
           alt=""
-          className="w-[50vh] h-[50vh] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
+          className="w-[50vw] h-[50vh] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
         />
         <div className="space-y-4 text-center divide-y dark:divide-gray-300">
           <div className="my-2 space-y-1">

@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleLogin } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const location = useLocation();
@@ -26,9 +26,11 @@ const Login = () => {
     console.log(data);
     signIn(email, password)
       .then(result => {
-        const user = result.user;
-        navigate(location?.state ? location.state : '/');
+        console.log(result.user);
         toast.success('You have successfully logged in');
+        setTimeout(() => {
+          navigate(location?.state ? location.state : '/');
+        }, 1500);
       })
       .catch(error => {
         if (error) {
@@ -37,23 +39,21 @@ const Login = () => {
       });
   };
 
-  // const handleLogin = e => {
-  //   e.preventDefault();
-  //   const form = new FormData(e.currentTarget);
-  //   const name = form.get('name');
-  //   const email = form.get('email');
-  //   const photo = form.get('photo');
-  //   const password = form.get('password');
-
-  //   signIn(email, password)
-  //     .then(result => {
-  //       const user = result.user;
-  //       console.log(user);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // };
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(result => {
+        const user = result.user;
+        if (user) {
+          toast.success('You have successfully logged in');
+          setTimeout(() => {
+            navigate('/');
+          }, 1500);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -138,7 +138,10 @@ const Login = () => {
             {/* Social icons */}
 
             <div className="flex justify-center space-x-4">
-              <div className="mx-auto flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
+              <div
+                onClick={handleGoogleLogin}
+                className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
+              >
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
                 </div>
@@ -147,7 +150,7 @@ const Login = () => {
                   G+
                 </span>
               </div>
-              <div className="mx-auto flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
+              <div className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
                 </div>
@@ -169,7 +172,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" autoClose={1000} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import vector from '../../assets/signup-vector.svg';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -8,8 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
-  const { createUser, updateUserData } = useContext(AuthContext);
+  const { createUser, updateUserData, googleLogin } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -20,31 +21,37 @@ const Register = () => {
   const onSubmit = data => {
     const { email, password, name, photo } = data;
 
-    // if (password.length < 6) {
-    //   setRegisterError('password must be more than 6 characters');
-    //   return;
-    // } else if (
-    //   !/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)
-    // ) {
-    //   setRegisterError('error');
-    //   return;
-    // }
-
-    // setRegisterError('');
-    // setSuccess('');
-
     createUser(email, password)
       .then(result => {
         const user = result.user;
         updateUserData(name, photo);
         if (user) {
           toast.success('Account created successfully');
+          setTimeout(() => {
+            navigate('/');
+          }, 1500);
         }
       })
       .catch(error => {
         console.log(error);
       });
     console.log(errors);
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(result => {
+        const user = result.user;
+        if (user) {
+          toast.success('Account created successfully');
+          setTimeout(() => {
+            navigate('/');
+          }, 1500);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -175,7 +182,10 @@ const Register = () => {
             {/* Social icons */}
 
             <div className="flex flex-col lg:flex-row justify-center space-x-4">
-              <div className="mx-auto flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
+              <div
+                onClick={handleGoogleLogin}
+                className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
+              >
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
                 </div>
@@ -184,7 +194,7 @@ const Register = () => {
                   G+
                 </span>
               </div>
-              <div className="mx-auto flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
+              <div className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
                 </div>
@@ -205,7 +215,7 @@ const Register = () => {
             </p>
           </div>
         </div>
-        <ToastContainer position="top-center" />
+        <ToastContainer position="top-center" autoClose={1000} />
       </div>
     </div>
   );
