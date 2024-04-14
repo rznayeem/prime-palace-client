@@ -12,11 +12,12 @@ const Nav = () => {
         <NavLink to={'/'}>Home</NavLink>
       </li>
       <li className="font-semibold text-xl btn bg-transparent hover:bg-transparent outline-none border-none shadow-none">
-        <NavLink to={'/profile'}>Update Profile</NavLink>
+        <NavLink to={'/profile'}>Profile</NavLink>
       </li>
       <li className="font-semibold text-xl btn bg-transparent hover:bg-transparent outline-none border-none shadow-none">
-        <NavLink to={'/about'}>About Us</NavLink>
+        <NavLink to={'/updateProfile'}>Update Profile</NavLink>
       </li>
+
       <li className="font-semibold text-xl btn bg-transparent hover:bg-transparent outline-none border-none shadow-none">
         <NavLink to={'/contact'}>Contact Us</NavLink>
       </li>
@@ -72,17 +73,15 @@ const Nav = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex items-center gap-6">
-              <Link
-                onClick={logOut}
-                to={'/login'}
-                className="btn bg-[#F85359] text-white text-[18px]"
-              >
-                Log Out
-              </Link>
               <div className="dropdown dropdown-hover">
                 <div className="avatar">
                   <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    <img
+                      src={
+                        user?.photoURL ||
+                        'https://i.ibb.co/wMhfdTN/user-profile-icon.png'
+                      }
+                    />
                   </div>
                 </div>
                 <ul
@@ -90,13 +89,20 @@ const Nav = () => {
                   className="dropdown-content -left-[70%] z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a>Item 1</a>
+                    <p>{user?.displayName || 'N/A'}</p>
                   </li>
                   <li>
                     <a>Item 2</a>
                   </li>
                 </ul>
               </div>
+              <Link
+                onClick={logOut}
+                to={'/login'}
+                className="btn bg-[#F85359] text-white text-[18px]"
+              >
+                Log Out
+              </Link>
             </div>
           ) : (
             <Link

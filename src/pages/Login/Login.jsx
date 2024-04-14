@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import vector from '../../assets/signup-vector.svg';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-  const { error, setError } = false;
 
   const {
     register,
@@ -21,12 +22,16 @@ const Login = () => {
     console.log(data);
     signIn(email, password)
       .then(result => {
-        setError(false);
         const user = result.user;
+        if (user) {
+          toast.success('You have successfully logged in');
+        }
         console.log(user);
       })
       .catch(error => {
-        setError(true);
+        if (error) {
+          toast.error('Your email or password does not match');
+        }
       });
   };
 
@@ -156,6 +161,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" />
     </div>
   );
 };
