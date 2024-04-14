@@ -13,7 +13,7 @@ const Estates = () => {
   }, []);
 
   return (
-    <div className=" bg-[#FFFCFC]">
+    <div className=" bg-[#F9FAFB]">
       <div className="container mx-auto py-24">
         <div className="text-center space-y-4 pb-10">
           <h1 className="font-bodoni text-5xl font-medium">

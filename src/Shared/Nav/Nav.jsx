@@ -27,7 +27,7 @@ const Nav = () => {
   );
 
   return (
-    <div>
+    <div className="bg-white/[0.5]">
       <div data-aos="fade-down" className="navbar container mx-auto">
         <div className="navbar-start my-5">
           <details className="dropdown">
@@ -104,7 +104,7 @@ const Nav = () => {
                   className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box"
                 >
                   <li>
-                    <p>
+                    <p className="text-nowrap">
                       <IoPersonSharp />
                       {user?.displayName || 'N/A'}
                     </p>
