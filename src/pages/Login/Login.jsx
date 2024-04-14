@@ -6,9 +6,11 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -95,18 +97,24 @@ const Login = () => {
                     )}
                   </p>
                 </div>
-                <div className="form-control">
+                <div className="form-control relative">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     {...register('password', { required: true })}
                     placeholder="password"
                     className="input input-bordered"
                     required
                   />
+                  <span
+                    className="absolute right-4 top-[40%] text-2xl cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
                       Forgot password?

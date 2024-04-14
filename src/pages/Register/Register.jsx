@@ -5,11 +5,11 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
   const { createUser, updateUserData } = useContext(AuthContext);
-  // const [registerError, setRegisterError] = useState('');
-  // const [success, setSuccess] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -121,12 +121,12 @@ const Register = () => {
                     className="input input-bordered"
                   />
                 </div>
-                <div className="form-control">
+                <div className="form-control relative">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     {...register('password', {
                       required: true,
@@ -140,6 +140,12 @@ const Register = () => {
                     className="input input-bordered"
                     required
                   />
+                  <span
+                    className="absolute right-4 top-[38%] text-2xl cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
                   <div className="text-red-600 pt-2">
                     {(errors.password?.type === 'required' && (
                       <p>*This field is required</p>
