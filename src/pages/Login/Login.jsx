@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import vector from '../../assets/signup-vector.svg';
 import { useContext, useState } from 'react';
@@ -10,10 +10,12 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
   const { signIn } = useContext(AuthContext);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -23,10 +25,8 @@ const Login = () => {
     signIn(email, password)
       .then(result => {
         const user = result.user;
-        if (user) {
-          toast.success('You have successfully logged in');
-        }
-        console.log(user);
+        navigate(location?.state ? location.state : '/');
+        toast.success('You have successfully logged in');
       })
       .catch(error => {
         if (error) {

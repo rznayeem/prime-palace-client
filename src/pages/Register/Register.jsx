@@ -3,6 +3,8 @@ import vector from '../../assets/signup-vector.svg';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const { createUser, updateUserData } = useContext(AuthContext);
@@ -12,8 +14,6 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    onSuccess,
     formState: { errors },
   } = useForm();
 
@@ -37,7 +37,9 @@ const Register = () => {
       .then(result => {
         const user = result.user;
         updateUserData(name, photo);
-        console.log(user);
+        if (user) {
+          toast.success('Account created successfully');
+        }
       })
       .catch(error => {
         console.log(error);
@@ -197,6 +199,7 @@ const Register = () => {
             </p>
           </div>
         </div>
+        <ToastContainer position="top-center" />
       </div>
     </div>
   );
