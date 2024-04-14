@@ -1,8 +1,14 @@
-# React + Vite
+# Prime Palace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Prime-Palace: [Live-Link](https://prime-palace.web.app/)
 
-Currently, two official plugins are available:
+- This is a website of Real Estates company where user can buy or rent their
+  dream house.
+- Here users'll get top ran's house and they can see every kind of details of
+  than house.
+- Added proper description of estate details section.
+- User can create accounts with email-password, google or github and they can
+  interact with use.
+- User can update their profile details from update profile section.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+\*Npm packages that I used : a. AOS package b. React Hook Form c. Swiper Slider
