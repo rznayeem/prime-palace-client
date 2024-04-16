@@ -10,7 +10,8 @@ import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
-  const { signIn, googleLogin, githubLogin } = useContext(AuthContext);
+  const { signIn, googleLogin, githubLogin, setLoader } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const location = useLocation();
@@ -24,7 +25,6 @@ const Login = () => {
 
   const onSubmit = data => {
     const { email, password } = data;
-    console.log(data);
     signIn(email, password)
       .then(result => {
         console.log(result.user);
@@ -34,7 +34,9 @@ const Login = () => {
         }, 1500);
       })
       .catch(error => {
-        if (error) {
+        console.log(error.code);
+        if (error.code === 'auth/invalid-credential') {
+          setLoader(false);
           toast.error('Your email or password does not match');
         }
       });
@@ -47,7 +49,7 @@ const Login = () => {
         if (user) {
           toast.success('You have successfully logged in');
           setTimeout(() => {
-            navigate('/');
+            navigate(location?.state ? location.state : '/');
           }, 1500);
         }
       })
@@ -61,9 +63,9 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         if (user) {
-          toast.success('Account created successfully');
+          toast.success('You have successfully logged in');
           setTimeout(() => {
-            navigate('/');
+            navigate(location?.state ? location.state : '/');
           }, 1500);
         }
       })
@@ -78,28 +80,25 @@ const Login = () => {
         <title>Prime Palace | Log In</title>
       </Helmet>
       <div className="hero bg-base-200">
-        <div className="container h-[90vh] my-20 mx-auto flex flex-col lg:flex-row-reverse">
-          <div
-            data-aos="fade-right"
-            className="text-center rounded-r-xl lg:w-[60%] lg:text-left bg-white"
-          >
+        <div className="container lg:h-[90vh] my-20 mx-auto flex flex-col lg:flex-row-reverse">
+          <div className="text-center  animate__animated animate__slideInLeft lg:rounded-r-xl lg:w-[60%] lg:text-left bg-white">
             <div className="text-center pt-12">
               <h1 className="text-3xl font-bold pb-4">Welcome Back !</h1>
               <p>Thank you for being with us. Please log in!</p>
             </div>
             <img className="" src={vector} alt="" />
           </div>
-          <div
-            data-aos="fade-left"
-            className="lg:w-[40%] content-center p-8 rounded-l-xl space-y-3 border bg-[#EE465E] font-sans mx-auto"
-          >
+          <div className="lg:w-[40%]  animate__animated animate__slideInRight w-full content-center p-8 lg:rounded-l-xl space-y-3 border bg-[#EE465E] font-sans mx-auto">
             <h1 className="text-3xl font-bold text-center text-white">Login</h1>
 
             {/* Input fields and the form started */}
 
             <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                <div className="form-control">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="card-body w-full"
+              >
+                <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
@@ -157,10 +156,10 @@ const Login = () => {
 
             {/* Social icons */}
 
-            <div className="flex justify-center space-x-4">
+            <div className="flex flex-col lg:flex-row justify-center gap-4">
               <div
                 onClick={handleGoogleLogin}
-                className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
+                className="mx-auto border cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
               >
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
@@ -172,7 +171,7 @@ const Login = () => {
               </div>
               <div
                 onClick={handleGithubLogin}
-                className="mx-auto cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
+                className="mx-auto border cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
               >
                 <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
                   Sign With
@@ -183,7 +182,7 @@ const Login = () => {
                 </span>
               </div>
             </div>
-            <p className="text-sm text-white text-center gap-2 flex justify-center sm:px-6 ">
+            <p className=" text-white text-center gap-2 flex justify-center sm:px-6 ">
               Don&apos;t have an account?
               <Link
                 to={'/register'}
@@ -195,7 +194,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer position="top-center" autoClose={1000} />
+      <ToastContainer position="top-center" autoClose={1500} />
     </div>
   );
 };

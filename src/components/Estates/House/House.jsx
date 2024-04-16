@@ -3,6 +3,7 @@ import { IoLocationSharp } from 'react-icons/io5';
 import { MdOutlineBedroomParent } from 'react-icons/md';
 import { PiToilet } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
+import 'animate.css';
 
 const House = ({ house }) => {
   const {
@@ -22,12 +23,12 @@ const House = ({ house }) => {
       <div
         data-aos="zoom-in-up"
         data-aos-duration="1000"
-        className="space-y-4 rounded-lg  p-6 shadow-lg bg-white"
+        className="space-y-4 rounded-lg border  p-6 shadow-lg bg-white"
       >
         <div className="relative">
           <img
             alt="card navigate ui"
-            className="object-cover w-full md:h-[214px] lg:h-[290px] rounded-lg"
+            className="object-cover  w-full md:h-[214px] lg:h-[290px] rounded-lg"
             src={image}
           />
           <h3 className="absolute right-4 bottom-4 bg-black rounded-full px-4 py-2 font-semibold text-white">
@@ -38,7 +39,7 @@ const House = ({ house }) => {
           </h4>
         </div>
         <div className="grid gap-2">
-          <h1 className="text-lg font-semibold ">{title}</h1>
+          <h1 className="text-lg font-semibold">{title}</h1>
           <p className="text-sm text-gray-500 dark:text-gray-500">
             Type: {segment}
           </p>

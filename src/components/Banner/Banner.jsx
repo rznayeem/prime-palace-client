@@ -3,7 +3,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import 'swiper/css/thumbs';
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { useState } from 'react';
 import 'aos/dist/aos.css';
 
@@ -50,11 +50,16 @@ const Banner = () => {
           '--swiper-navigation-color': '#fff',
         }}
         spaceBetween={10}
+        loop={true}
         navigation={true}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
-        modules={[FreeMode, Navigation, Thumbs]}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         data-aos="zoom-in-right"
         className="mySwiper2 mx-auto h-[100vh] bg-[#00000080] bg-blend-multiply"
       >
@@ -65,20 +70,12 @@ const Banner = () => {
               style={{ backgroundImage: `url(${slider.img})` }}
             >
               <div className="text-center mt-52">
-                <h1
-                  data-aos="fade-right"
-                  data-aos-duration="2000"
-                  className="lg:text-6xl text-3xl font-extrabold text-white font-bodoni"
-                >
+                <h1 className="lg:text-6xl animate__animated animate__fadeInLeft text-3xl font-extrabold text-white font-bodoni">
                   Find Your Dream Home at <br className="hidden lg:flex" />
                   <span className="mr-2">Prime</span>
                   <span className="text-[#F85359]">Palace</span>
                 </h1>
-                <p
-                  data-aos="fade-left"
-                  data-aos-duration="2000"
-                  className="mt-7 text-white text-xl"
-                >
+                <p className="mt-7 animate__animated animate__fadeInRight text-white text-xl">
                   Explore a Wide Range of Residential Properties in Your Desired
                   Location .<br className="hidden lg:flex" />
                   Discover Comfort, Luxury, and Convenience .
@@ -90,6 +87,7 @@ const Banner = () => {
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
+        loop={true}
         breakpoints={{
           640: {
             slidesPerView: 2,

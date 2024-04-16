@@ -2,29 +2,33 @@ import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { IoPersonSharp } from 'react-icons/io5';
+import { MdOutlineMailOutline } from 'react-icons/md';
 
 const Profile = () => {
-  const { user, loader } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="container mx-auto flex lg:my-20 justify-center">
       <Helmet>
         <title>Prime Palace | {user?.displayName || 'Profile'}</title>
       </Helmet>
-      <div className="flex flex-col justify-center lg:w-[50vw] h-[80vh] p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
+      <div className="flex flex-col justify-center min-w-[300px] lg:w-[50vw] h-[80vh] p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
         <img
           src={
             user?.photoURL || 'https://i.ibb.co/wMhfdTN/user-profile-icon.png'
           }
           alt=""
-          className="shadow-xl min-w-[40%] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
+          className="shadow-xl max-w-[300px] object-cover content-center min-w-[40%] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
         />
         <div className="space-y-4 text-center divide-y dark:divide-gray-300">
           <div className="my-2 space-y-1">
-            <h2 className="text-xl font-semibold sm:text-2xl">
+            <h2 className="text-xl flex justify-center items-center gap-3 font-semibold sm:text-2xl">
+              <IoPersonSharp />
               {user?.displayName || 'Name not found'}
             </h2>
-            <p className="px-5 text-xs sm:text-base dark:text-gray-600">
+            <p className="px-5 text-xs flex justify-center gap-3 items-center sm:text-base dark:text-gray-600">
+              <MdOutlineMailOutline />
               {user?.email || 'Email not found'}
             </p>
           </div>
@@ -90,7 +94,7 @@ const Profile = () => {
         <div className="flex justify-center">
           <Link
             to={'/updateProfile'}
-            className="group relative flex lg:w-1/3 items-center rounded-lg border-2 border-sky-400 p-4 text-sky-300"
+            className="group relative min-w-[250px] mt-5 flex lg:w-1/3 items-center rounded-lg border-2 border-sky-400 p-4 text-sky-300"
           >
             <span>Edit your profile</span>
             <span className="absolute right-3 box-content flex w-1/6 justify-center rounded-md bg-sky-400 duration-300 group-hover:w-[95%]">

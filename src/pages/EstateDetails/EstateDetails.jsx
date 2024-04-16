@@ -38,13 +38,13 @@ const EstateDetails = () => {
             <img
               src={image}
               alt=""
-              className="w-full h-60 sm:h-[600px] dark:bg-gray-500 object-cover rounded-lg"
+              className="w-full  animate__animated animate__backInDown h-60 sm:h-[600px] dark:bg-gray-500 object-cover rounded-lg"
             />
             <h4 className="bg-[#F85359] text-white text-xl absolute top-4 left-4 px-4 py-2 rounded-full">
               for {status}
             </h4>
           </div>
-          <div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 sm:px-10 sm:mx-12 lg:rounded-lg dark:bg-gray-50 border">
+          <div className="p-6  animate__animated animate__backInUp pb-12 m-4 mx-auto -mt-16 space-y-6 sm:px-10 sm:mx-12 lg:rounded-lg dark:bg-gray-50 border">
             <div className="space-y-2">
               <div
                 rel="noopener noreferrer"

@@ -74,6 +74,7 @@ const AuthProvider = ({ children }) => {
     githubLogin,
     signIn,
     logOut,
+    setLoader,
   };
 
   return (

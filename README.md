@@ -1,6 +1,6 @@
 # Prime Palace
 
-Prime-Palace: [Live-Link](https://prime-palace.web.app/)
+[Live-Link:prime-palace.web.app](https://prime-palace.web.app/)
 
 - This is a website of Real Estates company where user can buy or rent their
   dream house.
@@ -11,4 +11,5 @@ Prime-Palace: [Live-Link](https://prime-palace.web.app/)
   interact with use.
 - User can update their profile details from update profile section.
 
-\*Npm packages that I used : a. AOS package b. React Hook Form c. Swiper Slider
+\*Npm packages that I used : -a. AOS package -b. React Hook Form -c. Swiper
+Slider d.Animate.css

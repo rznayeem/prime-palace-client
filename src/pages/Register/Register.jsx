@@ -9,8 +9,9 @@ import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
-  const { createUser, updateUserData, googleLogin, githubLogin } =
+  const { createUser, updateUserData, googleLogin, githubLogin, setLoader } =
     useContext(AuthContext);
+  const [error, setError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -35,9 +36,12 @@ const Register = () => {
         }
       })
       .catch(error => {
-        console.log(error);
+        console.log(error.code);
+        setLoader(false);
+        if (error.code === 'auth/invalid-email') {
+          setError(true);
+        }
       });
-    console.log(errors);
   };
 
   const handleGoogleLogin = () => {
@@ -78,10 +82,7 @@ const Register = () => {
       </Helmet>
       <div className="hero bg-base-200">
         <div className="container lg:h-[90vh] my-20 mx-auto flex flex-col lg:flex-row">
-          <div
-            data-aos="fade-left"
-            className="text-center rounded-l-xl lg:w-[60%] lg:text-left bg-white"
-          >
+          <div className="text-center  animate__animated animate__slideInRight lg:rounded-l-xl lg:w-[60%] lg:text-left bg-white">
             <div className="text-center pt-12">
               <h1 className="text-3xl font-bold pb-4">Join with us !</h1>
               <p>
@@ -90,10 +91,7 @@ const Register = () => {
             </div>
             <img className="" src={vector} alt="" />
           </div>
-          <div
-            data-aos="fade-right"
-            className="lg:w-[40%] w-full p-8 rounded-r-xl space-y-3 border bg-[#EE465E] font-sans mx-auto"
-          >
+          <div className="lg:w-[40%] w-full  animate__animated animate__slideInLeft p-8 lg:rounded-r-xl space-y-3 border bg-[#EE465E] font-sans mx-auto">
             <h1 className="text-3xl font-bold text-center text-white">
               Create your account
             </h1>
@@ -134,6 +132,7 @@ const Register = () => {
                     {errors.email?.type === 'required' && (
                       <p>*This field is required</p>
                     )}
+                    {error && <p>Your email format is incorrect</p>}
                   </div>
                 </div>
                 <div className="form-control">
@@ -201,7 +200,7 @@ const Register = () => {
 
             {/* Social icons */}
 
-            <div className="flex flex-col lg:flex-row justify-center space-x-4">
+            <div className="flex flex-col lg:flex-row justify-center gap-4">
               <div
                 onClick={handleGoogleLogin}
                 className="mx-auto border cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
@@ -227,7 +226,7 @@ const Register = () => {
                 </span>
               </div>
             </div>
-            <p className="text-sm text-white text-center gap-2 flex justify-center sm:px-6 ">
+            <p className="text-white text-center gap-2 flex justify-center sm:px-6 ">
               Already have an account?
               <Link
                 to={'/login'}

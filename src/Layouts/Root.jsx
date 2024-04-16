@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Nav from '../Shared/Nav/Nav';
 import Footer from '../Shared/Footer/Footer';
 import { useEffect } from 'react';
+import 'animate.css';
 
 import AOS from 'aos';
 

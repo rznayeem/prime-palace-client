@@ -58,18 +58,20 @@ const Nav = () => {
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {navLinks}
-              <Link
-                onClick={logOut}
-                to={'/login'}
-                className="btn bg-[#F85359] text-white text-[18px] lg:hidden flex"
-              >
-                Log Out
-              </Link>
+              {user && (
+                <Link
+                  onClick={logOut}
+                  to={'/login'}
+                  className="btn bg-[#F85359] text-white text-[18px] lg:hidden flex"
+                >
+                  Log Out
+                </Link>
+              )}
             </ul>
           </details>
           <Link
             to={'/'}
-            className="btn btn-ghost text-xl hover:bg-transparent text-[#F85359]"
+            className="btn btn-ghost text-2xl hover:bg-transparent text-[#F85359]"
           >
             <span className="text-black">Prime</span> Palace
           </Link>
