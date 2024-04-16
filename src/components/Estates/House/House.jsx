@@ -26,11 +26,13 @@ const House = ({ house }) => {
         className="space-y-4 rounded-lg border  p-6 shadow-lg bg-white"
       >
         <div className="relative">
-          <img
-            alt="card navigate ui"
-            className="object-cover  w-full md:h-[214px] lg:h-[290px] rounded-lg"
-            src={image}
-          />
+          <div className="overflow-hidden rounded-lg">
+            <img
+              alt="card navigate ui"
+              className="object-cover w-full md:h-[214px] lg:h-[290px] rounded-lg transition duration-300 ease-in-out hover:scale-110"
+              src={image}
+            />
+          </div>
           <h3 className="absolute right-4 bottom-4 bg-black rounded-full px-4 py-2 font-semibold text-white">
             $ {price}
           </h3>

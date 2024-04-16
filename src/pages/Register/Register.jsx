@@ -5,12 +5,11 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
-  const { createUser, updateUserData, googleLogin, githubLogin, setLoader } =
-    useContext(AuthContext);
+  const { createUser, updateUserData, setLoader } = useContext(AuthContext);
   const [error, setError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -44,36 +43,36 @@ const Register = () => {
       });
   };
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then(result => {
-        const user = result.user;
-        if (user) {
-          toast.success('Account created successfully');
-          setTimeout(() => {
-            navigate('/');
-          }, 1500);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-  const handleGithubLogin = () => {
-    githubLogin()
-      .then(result => {
-        const user = result.user;
-        if (user) {
-          toast.success('Account created successfully');
-          setTimeout(() => {
-            navigate('/');
-          }, 1500);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  // const handleGoogleLogin = () => {
+  //   googleLogin()
+  //     .then(result => {
+  //       const user = result.user;
+  //       if (user) {
+  //         toast.success('Account created successfully');
+  //         setTimeout(() => {
+  //           navigate('/');
+  //         }, 1500);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
+  // const handleGithubLogin = () => {
+  //   githubLogin()
+  //     .then(result => {
+  //       const user = result.user;
+  //       if (user) {
+  //         toast.success('Account created successfully');
+  //         setTimeout(() => {
+  //           navigate('/');
+  //         }, 1500);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div>
@@ -82,7 +81,7 @@ const Register = () => {
       </Helmet>
       <div className="hero bg-base-200">
         <div className="container lg:h-[90vh] my-20 mx-auto flex flex-col lg:flex-row">
-          <div className="text-center  animate__animated animate__slideInRight lg:rounded-l-xl lg:w-[60%] lg:text-left bg-white">
+          <div className="text-center animate__animated animate__slideInRight lg:rounded-l-xl lg:w-[60%] lg:text-left bg-white">
             <div className="text-center pt-12">
               <h1 className="text-3xl font-bold pb-4">Join with us !</h1>
               <p>
@@ -91,7 +90,7 @@ const Register = () => {
             </div>
             <img className="" src={vector} alt="" />
           </div>
-          <div className="lg:w-[40%] w-full  animate__animated animate__slideInLeft p-8 lg:rounded-r-xl space-y-3 border bg-[#EE465E] font-sans mx-auto">
+          <div className="lg:w-[40%] w-full  animate__animated animate__slideInLeft p-8 lg:rounded-r-xl space-y-3 border content-center bg-[#EE465E] font-sans mx-auto">
             <h1 className="text-3xl font-bold text-center text-white">
               Create your account
             </h1>
@@ -192,40 +191,6 @@ const Register = () => {
               </form>
             </div>
 
-            <div className="flex items-center pt-4 space-x-2">
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <p className="text-sm text-white">Login with social accounts</p>
-              <div className="flex-1 h-px bg-gray-300"></div>
-            </div>
-
-            {/* Social icons */}
-
-            <div className="flex flex-col lg:flex-row justify-center gap-4">
-              <div
-                onClick={handleGoogleLogin}
-                className="mx-auto border cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
-              >
-                <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
-                  Sign With
-                </div>
-                <span className="right-0 top-0 h-0 w-0 -rotate-90 border-b-[50px] border-r-[50px] border-b-transparent border-r-[#8EA7E9] group-hover:hidden"></span>
-                <span className="pr-4 text-4xl font-bold text-[#8EA7E9]">
-                  G+
-                </span>
-              </div>
-              <div
-                onClick={handleGithubLogin}
-                className="mx-auto border cursor-pointer flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
-              >
-                <div className="flex h-full w-[50%] items-center bg-[#8EA7E9] pl-4 text-sm text-white">
-                  Sign With
-                </div>
-                <span className="right-0 top-0 h-0 w-0 -rotate-90 border-b-[50px] border-r-[50px] border-b-transparent border-r-[#8EA7E9] group-hover:hidden"></span>
-                <span className="pr-4 text-4xl font-bold text-[#8EA7E9]">
-                  <FaGithub />
-                </span>
-              </div>
-            </div>
             <p className="text-white text-center gap-2 flex justify-center sm:px-6 ">
               Already have an account?
               <Link

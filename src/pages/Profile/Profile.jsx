@@ -19,20 +19,20 @@ const Profile = () => {
             user?.photoURL || 'https://i.ibb.co/wMhfdTN/user-profile-icon.png'
           }
           alt=""
-          className="shadow-xl max-w-[300px] object-cover content-center min-w-[40%] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
+          className="shadow-xl animate__animated animate__bounceIn max-w-[300px] object-cover content-center min-w-[40%] mx-auto rounded-xl dark:bg-gray-500 aspect-square"
         />
         <div className="space-y-4 text-center divide-y dark:divide-gray-300">
           <div className="my-2 space-y-1">
-            <h2 className="text-xl flex justify-center items-center gap-3 font-semibold sm:text-2xl">
+            <h2 className="text-xl flex animate__animated animate__fadeInDown justify-center items-center gap-3 font-semibold sm:text-2xl">
               <IoPersonSharp />
               {user?.displayName || 'Name not found'}
             </h2>
-            <p className="px-5 text-xs flex justify-center gap-3 items-center sm:text-base dark:text-gray-600">
+            <p className="px-5 text-xs flex animate__animated animate__fadeInUp justify-center gap-3 items-center sm:text-base dark:text-gray-600">
               <MdOutlineMailOutline />
               {user?.email || 'Email not found'}
             </p>
           </div>
-          <div className="flex justify-center pt-2 space-x-4 align-center">
+          <div className="flex justify-center animate__animated animate__fadeInRight pt-2 space-x-4 align-center">
             <a
               rel="noopener noreferrer"
               href="#"
@@ -91,7 +91,7 @@ const Profile = () => {
             </a>
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex animate__animated animate__fadeInLeft justify-center">
           <Link
             to={'/updateProfile'}
             className="group relative min-w-[250px] mt-5 flex lg:w-1/3 items-center rounded-lg border-2 border-sky-400 p-4 text-sky-300"
