@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import { ToastContainer, toast } from 'react-toastify';
 
 const UpdateProfile = () => {
   const { user, updateUserData } = useContext(AuthContext);
@@ -10,7 +11,8 @@ const UpdateProfile = () => {
 
   const handleUpdate = e => {
     e.preventDefault();
-    updateUserData(userName, userPhoto);
+    updateUserData(userName, userPhoto, userEmail);
+    toast.success('Profile updated successfully...');
   };
 
   const handleNameChange = e => {
@@ -77,6 +79,7 @@ const UpdateProfile = () => {
           </div>
         </form>
       </div>
+      <ToastContainer autoClose={1000} />
     </div>
   );
 };

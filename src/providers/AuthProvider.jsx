@@ -40,12 +40,12 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
-  const updateUserData = (name, photo) => {
+  const updateUserData = (name, photo, email) => {
     updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     }).then(() => {
-      setUser({ displayName: name, photoURL: photo });
+      setUser({ displayName: name, photoURL: photo, email: email });
     });
   };
   console.log(user);

@@ -26,7 +26,7 @@ const Register = () => {
     createUser(email, password)
       .then(result => {
         const user = result.user;
-        updateUserData(name, photo);
+        updateUserData(name, photo, email);
         if (user) {
           toast.success('Account created successfully');
           setTimeout(() => {
@@ -166,11 +166,13 @@ const Register = () => {
                     required
                   />
                   <span
-                    className="absolute right-4 top-[38%] text-2xl cursor-pointer"
+                    className="absolute right-4 top-[55%] text-2xl cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <FaEye /> : <FaEyeSlash />}
                   </span>
+                </div>
+                <div>
                   <div className="text-red-600 pt-2">
                     {(errors.password?.type === 'required' && (
                       <p>*This field is required</p>
